@@ -1,0 +1,5 @@
+flask
+typing
+steam[client]
+requests
+gunicorn
