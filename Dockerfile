@@ -10,4 +10,6 @@ WORKDIR /app
 COPY user_ids.py .
 COPY app.py .
 
-ENTRYPOINT [ "gunicorn", "-w", $(nproc), "-b", "0.0.0.0:${PORT}", "app:app" ]
+ENV WORKERS=$(nproc)
+
+CMD ["sh", "-c", "gunicorn -w ${WORKERS:-1} -b 0.0.0.0:${PORT:-80} app:app"]
